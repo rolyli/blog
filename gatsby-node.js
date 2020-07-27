@@ -6,6 +6,7 @@
 
 // You can delete this file if you're not using it
 
+const path = require("path")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async function ({ actions, graphql }) {
@@ -22,12 +23,29 @@ exports.createPages = async function ({ actions, graphql }) {
       }
     }
   `)
+
   data.allMarkdownRemark.edges.forEach(edge => {
     const slug = edge.node.fields.slug
     actions.createPage({
       path: slug,
       component: require.resolve(`./src/templates/blog-post.js`),
       context: { slug: slug },
+    })
+  })
+
+  const posts = data.allMarkdownRemark.edges
+  const postsPerPage = 6
+  const numPages = Math.ceil(posts.length / postsPerPage)
+  Array.from({ length: numPages }).forEach((_, i) => {
+    actions.createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: path.resolve("./src/templates/blog-list.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
     })
   })
 }
