@@ -5,10 +5,9 @@ import Layout from "../components/layout"
 
 export default function BlogPostTemplate( {data} ) {
   const post = data.markdownRemark
-
   return (
     <Layout>
-    <section dangerouslySetInnerHTML={{ __html: post.html }}></section>
+
     </Layout>
   )
 }

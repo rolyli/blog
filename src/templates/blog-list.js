@@ -1,20 +1,35 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
+import { css } from "@emotion/core"
+import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
+import StyledLink from "../components/styledLink"
 
-export default class BlogList extends React.Component {
-  render() {
-    const posts = this.props.data.allMarkdownRemark.edges
-    return (
-      <Layout>
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return <div key={node.fields.slug}>{title}</div>
-        })}
-      </Layout>
-    )
-  }
+export default function BlogList({data, pageContext}) {
+  const posts = data.allMarkdownRemark.edges
+  const {currentPage, numPages} = pageContext
+  const nextPage = currentPage + 1
+  return (
+    <Layout>
+      {posts.map(({ node }) => {
+        const title = node.frontmatter.title || node.fields.slug
+        return (
+          <div key={node.fields.slug}>
+            <StyledLink to={node.fields.slug}>{title}</StyledLink>
+          </div>
+        )
+      })}
+      <hr css={css`
+        margin-top: ${rhythm(1)}
+
+      `}
+      />
+
+
+    </Layout>
+  )
 }
+
 
 export const blogListQuery = graphql`
   query blogListQuery($skip: Int!, $limit: Int!) {

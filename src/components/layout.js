@@ -3,12 +3,6 @@ import { css } from "@emotion/core"
 import { useStaticQuery, Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
 
-const ListLink = props => (
-  <li style={{ display: `inline-block`, marginRight: `1rem` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-)
-
 export default function Layout({ children }) {
   const data = useStaticQuery(
     graphql`
@@ -21,11 +15,12 @@ export default function Layout({ children }) {
       }
     `
   )
+
   return (
     <div
       css={css`
         margin: 0 auto;
-        max-width: 700px;
+        max-width: 800px;
         padding: ${rhythm(2)};
         padding-top: ${rhythm(1.5)};
       `}
@@ -41,11 +36,6 @@ export default function Layout({ children }) {
           {data.site.siteMetadata.title}
         </h3>
       </Link>
-      <ul style={{ listStyle: `none`, float: `right` }}>
-        <ListLink to="/">Home</ListLink>
-        <ListLink to="/about/">About</ListLink>
-        <ListLink to="/contact/">Contact</ListLink>
-      </ul>
       {children}
     </div>
   )
