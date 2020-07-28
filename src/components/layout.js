@@ -2,6 +2,7 @@ import React from "react"
 import { css } from "@emotion/core"
 import { useStaticQuery, Link, graphql } from "gatsby"
 import { rhythm } from "../utils/typography"
+import StyledLink from "../components/styledLink"
 
 export default function Layout({ children }) {
   const data = useStaticQuery(
@@ -25,17 +26,16 @@ export default function Layout({ children }) {
         padding-top: ${rhythm(1.5)};
       `}
     >
-      <Link to={`/`}>
-        <h3
+      <StyledLink to={`/`} style={{textDecoration: 'none'}}>
+        <h1
           css={css`
             margin-bottom: ${rhythm(2)};
-            display: inline-block;
-            font-style: normal;
           `}
         >
           {data.site.siteMetadata.title}
-        </h3>
-      </Link>
+        </h1>
+      </StyledLink>
+      <hr />
       {children}
     </div>
   )

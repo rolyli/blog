@@ -4,6 +4,7 @@ import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 import StyledLink from "../components/styledLink"
+import Pagination from "../components/pagination"
 
 export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
@@ -21,11 +22,12 @@ export default function BlogList({data, pageContext}) {
       })}
       <hr css={css`
         margin-top: ${rhythm(1)}
-
       `}
       />
-
-
+      <p>
+        Page: {currentPage} of {numPages} {
+           currentPage !== numPages? <StyledLink to={`/blog/${nextPage}`}>Older</StyledLink>: false}
+      </p>
     </Layout>
   )
 }
