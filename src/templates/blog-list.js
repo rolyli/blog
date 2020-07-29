@@ -1,32 +1,52 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { css } from "@emotion/core"
+import styled from "@emotion/styled"
+
 import { rhythm } from "../utils/typography"
+
 import Layout from "../components/layout"
-import StyledLink from "../components/styledLink"
-import Pagination from "../components/pagination"
 
 export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numPages} = pageContext
   const nextPage = currentPage + 1
+
+
+  const PostHeader = styled.div`
+    margin-bottom: ${rhythm(1)}
+  `
+
   return (
     <Layout>
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug}>
-            <StyledLink to={node.fields.slug}>{title}</StyledLink>
+            <PostHeader>
+              <h3 style={{
+                    marginBottom: rhythm(1 / 4),
+              }}>
+                <Link to={node.fields.slug}>{title}</Link>
+              </h3>
+              <small>{node.frontmatter.date}</small>
+            </PostHeader>
+
+            <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
+            
+            <Link to={node.fields.slug}>
+              <u>Read more →</u>
+            </Link>
+
+            <hr css={css`
+              margin-top: ${rhythm(2.5)}
+            `} />
           </div>
         )
       })}
-      <hr css={css`
-        margin-top: ${rhythm(1)}
-      `}
-      />
       <p>
         Page: {currentPage} of {numPages} {
-           currentPage !== numPages? <StyledLink to={`/blog/${nextPage}`}>Older</StyledLink>: false}
+           currentPage !== numPages? <Link to={`/blog/${nextPage}`}>Older</Link>: false}
       </p>
     </Layout>
   )
@@ -42,11 +62,13 @@ export const blogListQuery = graphql`
     ) {
       edges {
         node {
+          excerpt(pruneLength: 600)
           fields {
             slug
           }
           frontmatter {
             title
+            date
           }
         }
       }
