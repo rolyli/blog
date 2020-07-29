@@ -50,7 +50,6 @@ export default function BlogList({data, pageContext}) {
         <Link to={`/blog/${nextPage}`}>Older</Link>:
         false}
       </p>
-      {currentPage}
     </Layout>
   )
 }
