@@ -11,6 +11,7 @@ export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numPages} = pageContext
   const nextPage = currentPage + 1
+  const previousPage = currentPage - 1 !== 1? `/blog/${currentPage - 1}`: '/'
 
 
   const PostHeader = styled.div`
@@ -45,9 +46,11 @@ export default function BlogList({data, pageContext}) {
         )
       })}
       <p>
-        Page: {currentPage} of {numPages} {
-           currentPage !== numPages? <Link to={`/blog/${nextPage}`}>Older</Link>: false}
+      {currentPage !== 1? <Link to={previousPage}>Newer</Link> : false} Page: {currentPage} of {numPages} {currentPage !== numPages?
+        <Link to={`/blog/${nextPage}`}>Older</Link>:
+        false}
       </p>
+      {currentPage}
     </Layout>
   )
 }

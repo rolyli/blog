@@ -2,8 +2,8 @@ import Typography from "typography"
 const typography = new Typography({
 baseFontSize: "18px",
 baseLineHeight: 1.666,
-headerFontFamily: ["Times New Roman", "sans-serif"],
-bodyFontFamily: ["Times New Roman", "sans-serif"],
+headerFontFamily: ["sans-serif"],
+bodyFontFamily: ["Times New Roman"],
 })
 
 export default typography
