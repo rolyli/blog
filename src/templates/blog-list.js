@@ -34,11 +34,14 @@ export default function BlogList({data, pageContext}) {
               </h2>
               <small>{node.frontmatter.date}</small>
             </PostHeader>
+
             <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
             
-            <Link to={node.fields.slug}>
-              <u>Read more →</u>
-            </Link>
+            <p>
+              <Link to={node.fields.slug}>
+                Read more →
+              </Link>
+            </p>
 
             <hr css={css`
               margin-top: ${rhythm(2.5)}
@@ -47,10 +50,23 @@ export default function BlogList({data, pageContext}) {
         )
       })}
       <p>
-      {currentPage !== 1? <Link to={previousPageSlug}>Newer</Link> : false} Page: {currentPage} of {numPages} {currentPage !== numPages?
-        <Link to={nextPageSlug}>Older</Link>:
-        false}
+        {currentPage !== 1? 
+          <Link
+            to={previousPageSlug}
+            style={{marginRight: rhythm(0.25)}}
+          >
+            Newer
+          </Link>: 
+          false} 
+        Page: {currentPage} of {numPages}
+        {currentPage !== numPages?
+          <Link 
+            to={nextPageSlug}
+            style={{marginLeft: rhythm(0.25)}}
+          >Older</Link>:
+          false}
       </p>
+
     </Layout>
   )
 }

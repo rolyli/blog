@@ -19,7 +19,6 @@ export default function BlogPostTemplate( {data, location} ) {
       <small
         style={{
           ...scale(0.25),
-          fontWeight: 100
       }}>{post.frontmatter.date}</small>
       </h2>
       <p dangerouslySetInnerHTML={{__html: post.html}}></p>
