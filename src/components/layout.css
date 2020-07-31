@@ -2,6 +2,10 @@ a {
     color: black;
 }
 
-h3 a {
+h3 a, h2 a {
     text-decoration: none;
+}
+
+body {
+    background-color: GhostWhite;
 }

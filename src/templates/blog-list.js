@@ -11,7 +11,9 @@ export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numPages} = pageContext
   const nextPage = currentPage + 1
-  const previousPage = currentPage - 1 !== 1? `/blog/${currentPage - 1}`: '/'
+  const currentPageSlug = currentPage == 1? `/` : `/blog/`+ currentPage
+  const previousPageSlug = currentPage - 1 == 1? '/' : `/blog/${currentPage - 1}`
+  const nextPageSlug = `/blog/` + ( currentPage + 1 )
 
 
   const PostHeader = styled.div`
@@ -25,14 +27,13 @@ export default function BlogList({data, pageContext}) {
         return (
           <div key={node.fields.slug}>
             <PostHeader>
-              <h3 style={{
+              <h2 style={{
                     marginBottom: rhythm(1 / 4),
               }}>
                 <Link to={node.fields.slug}>{title}</Link>
-              </h3>
+              </h2>
               <small>{node.frontmatter.date}</small>
             </PostHeader>
-
             <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
             
             <Link to={node.fields.slug}>
@@ -46,8 +47,8 @@ export default function BlogList({data, pageContext}) {
         )
       })}
       <p>
-      {currentPage !== 1? <Link to={previousPage}>Newer</Link> : false} Page: {currentPage} of {numPages} {currentPage !== numPages?
-        <Link to={`/blog/${nextPage}`}>Older</Link>:
+      {currentPage !== 1? <Link to={previousPageSlug}>Newer</Link> : false} Page: {currentPage} of {numPages} {currentPage !== numPages?
+        <Link to={nextPageSlug}>Older</Link>:
         false}
       </p>
     </Layout>

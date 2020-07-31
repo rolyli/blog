@@ -1,7 +1,7 @@
 import React from "react"
 import { css } from "@emotion/core"
 import { useStaticQuery, Link, graphql } from "gatsby"
-import { rhythm } from "../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 import "./layout.css"
 
 export default function Layout({ children }) {
@@ -21,19 +21,23 @@ export default function Layout({ children }) {
     <div
       css={css`
         margin: 0 auto;
-        max-width: 800px;
-        padding: ${rhythm(2)};
+        max-width: 600px;
+        padding: ${rhythm(0.5)};
         padding-top: ${rhythm(1.5)};
       `}
     >
         <h1
-          css={css`
-            margin-bottom: ${rhythm(2)};
-          `}
+          style={{
+            ...scale(0.5),
+            marginBottom: rhythm(2)
+          }}
         >
-        <Link to={`/`} style={{textDecoration: 'none'}}>
+        <Link
+          style={{textDecoration: 'none'}}
+          to={'/'}
+        >
         {data.site.siteMetadata.title}
-      </Link>
+        </Link>
       </h1>
 
       <hr />
