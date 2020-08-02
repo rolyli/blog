@@ -1,6 +1,7 @@
+import {Navbar, Nav} from "react-bootstrap"
 import React from "react"
 import { css } from "@emotion/core"
-import { useStaticQuery, Link, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
 import "./layout.css"
 
@@ -21,25 +22,23 @@ export default function Layout({ children }) {
     <div
       css={css`
         margin: 0 auto;
-        max-width: 600px;
+        max-width: 800px;
         padding: ${rhythm(0.5)};
         padding-top: ${rhythm(1.5)};
       `}
     >
-        <h1
-          style={{
-            ...scale(0.5),
-            marginBottom: rhythm(2)
-          }}
-        >
-        <Link
-          style={{textDecoration: 'none'}}
-          to={'/'}
-        >
-        {data.site.siteMetadata.title}
-        </Link>
-      </h1>
-
+      <Navbar expand="md" className="p-0">
+      
+      <Navbar.Brand>
+        <Link to={"/"}>{data.site.siteMetadata.title}</Link>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-md-auto">
+            <Nav.Link>Twitter</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <hr />
       {children}
     </div>

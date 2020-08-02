@@ -6,6 +6,10 @@ p {
     color: rgb(84, 84, 84);
 }
 
+p a {
+    text-decoration: underline;
+}
+
 p a, small, h2 {
     font-weight: normal;
 }

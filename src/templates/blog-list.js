@@ -3,16 +3,15 @@ import { graphql, Link } from "gatsby"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 
-import { rhythm } from "../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 
 import Layout from "../components/layout"
+import {Col, Row, Container} from "react-bootstrap"
 
 export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numPages} = pageContext
-  const nextPage = currentPage + 1
-  const currentPageSlug = currentPage == 1? `/` : `/blog/`+ currentPage
-  const previousPageSlug = currentPage - 1 == 1? '/' : `/blog/${currentPage - 1}`
+  const previousPageSlug = currentPage - 1 === 1? '/' : `/blog/${currentPage - 1}`
   const nextPageSlug = `/blog/` + ( currentPage + 1 )
 
 
@@ -26,22 +25,27 @@ export default function BlogList({data, pageContext}) {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <div key={node.fields.slug}>
+            <Row>
+            <Col sm={4}>
             <PostHeader>
               <h2 style={{
-                    marginBottom: rhythm(1 / 4),
+                    ...scale(),
+                    marginBottom: 0,
               }}>
                 <Link to={node.fields.slug}>{title}</Link>
               </h2>
               <small>{node.frontmatter.date}</small>
             </PostHeader>
-
+            </Col>
+            <Col sm={8}>
             <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
-            
             <p>
               <Link to={node.fields.slug}>
                 Read more →
               </Link>
             </p>
+            </Col>
+            </Row>
 
             <hr css={css`
               margin-top: ${rhythm(2.5)}
@@ -49,6 +53,7 @@ export default function BlogList({data, pageContext}) {
           </div>
         )
       })}
+
       <p>
         {currentPage !== 1? 
           <Link
