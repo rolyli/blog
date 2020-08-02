@@ -2,7 +2,7 @@ import {Navbar, Nav} from "react-bootstrap"
 import React from "react"
 import { css } from "@emotion/core"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
 import "./layout.css"
 
 export default function Layout({ children }) {

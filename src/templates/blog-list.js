@@ -6,7 +6,7 @@ import styled from "@emotion/styled"
 import { rhythm, scale } from "../utils/typography"
 
 import Layout from "../components/layout"
-import {Col, Row, Container} from "react-bootstrap"
+import {Col, Row} from "react-bootstrap"
 
 export default function BlogList({data, pageContext}) {
   const posts = data.allMarkdownRemark.edges
