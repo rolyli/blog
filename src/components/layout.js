@@ -27,13 +27,24 @@ export default function Layout({ children }) {
         padding-top: ${rhythm(1.5)};
       `}
     >
-      <Navbar expand="md" className="p-0">
-      
+      <Navbar 
+        expand="md"
+        className="p-0"
+        css={css`
+          .navbar-toggler{
+            border-style: none;
+          }
+
+          .navbar-toggler:focus{
+            outline-width: 0;
+          }
+        `}
+      >
       <Navbar.Brand>
         <Link to={"/"}>{data.site.siteMetadata.title}</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" >
           <Nav className="ml-md-auto">
             <Nav.Link>Twitter</Nav.Link>
           </Nav>
