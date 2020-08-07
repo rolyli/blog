@@ -17,7 +17,7 @@ export default function BlogPostTemplate( {data, location} ) {
       <br/>
       <small
         style={{
-          ...scale(0.25),
+          ...scale(0.10),
       }}>{post.frontmatter.date}</small>
       </h2>
       <div dangerouslySetInnerHTML={{__html: post.html}}></div>
@@ -31,7 +31,7 @@ export const query = graphql`
       html
       frontmatter {
         title
-        date
+        date(formatString: "MMMM Do, YYYY")
       }
     }
   }
