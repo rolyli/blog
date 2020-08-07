@@ -20,7 +20,6 @@ export default function BlogPostLayout({ children }) {
           <BlogNavbar />
         </Col>
       </Row>
-      <hr />
       {children}
     </div>
   )
