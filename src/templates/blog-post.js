@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
-import Layout from "../components/layout"
+import BlogPostLayout from "../components/blog-post-layout"
 
 export default function BlogPostTemplate( {data, location} ) {
   const post = data.markdownRemark
   return (
-    <Layout>
+    <BlogPostLayout>
       <h2
         style={{
           ...scale(1.15),
@@ -21,7 +21,7 @@ export default function BlogPostTemplate( {data, location} ) {
       }}>{post.frontmatter.date}</small>
       </h2>
       <div dangerouslySetInnerHTML={{__html: post.html}}></div>
-    </Layout>
+    </BlogPostLayout>
   )
 }
 

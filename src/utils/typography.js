@@ -1,6 +1,6 @@
 import Typography from "typography"
 const typography = new Typography({
-baseFontSize: "16px",
+baseFontSize: "19px",
 baseLineHeight: 1.666,
 headerFontFamily: ["Helvetica"],
 bodyFontFamily: ["Helvetica"],

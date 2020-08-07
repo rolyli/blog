@@ -1,11 +1,11 @@
 import React from "react"
-import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import {Col, Row} from "react-bootstrap"
+import { css } from "@emotion/core"
 import BlogNavbar from "./blog-navbar"
 import "./layout.css"
 
-export default function Layout({ children }) {
+export default function BlogPostLayout({ children }) {
   return (
     <div
       css={css`
@@ -16,7 +16,7 @@ export default function Layout({ children }) {
       `}
     >
       <Row>
-        <Col sm={{offset: 2}}>
+        <Col>
           <BlogNavbar />
         </Col>
       </Row>

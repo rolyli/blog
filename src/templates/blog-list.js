@@ -24,9 +24,11 @@ export default function BlogList({data, pageContext}) {
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <div key={node.fields.slug}>
+            <div key={node.fields.slug}>
             <Row>
-            <Col sm={4}>
+            <Col sm={2}>
+            </Col>
+            <Col sm={3}>
             <PostHeader>
               <h2 style={{
                     ...scale(),
@@ -37,7 +39,7 @@ export default function BlogList({data, pageContext}) {
               <small>{node.frontmatter.date}</small>
             </PostHeader>
             </Col>
-            <Col sm={8}>
+            <Col sm={7}>
             <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
             <p>
               <Link to={node.fields.slug}>
@@ -46,31 +48,37 @@ export default function BlogList({data, pageContext}) {
             </p>
             </Col>
             </Row>
-
-            <hr css={css`
-              margin-top: ${rhythm(2.5)}
-            `} />
+            <Row>
+              <Col sm={{offset: 2}}>
+              <hr css={css`
+                margin-top: ${rhythm(2.5)}
+              `} />
+              </Col>
+            </Row>
           </div>
         )
       })}
-
-      <p>
-        {currentPage !== 1? 
-          <Link
-            to={previousPageSlug}
-            style={{marginRight: rhythm(0.25)}}
-          >
-            Newer
-          </Link>: 
-          false} 
-        Page: {currentPage} of {numPages}
-        {currentPage !== numPages?
-          <Link 
+      <Row>
+        <Col sm={{offset: 2}}>
+          <p>
+          {(currentPage !== 1) && (<Link
+              to={previousPageSlug}
+              style={{marginRight: rhythm(0.25)}}
+            >
+              Newer
+            </Link>
+          )}
+          Page: {currentPage} of {numPages}
+          {(currentPage !== numPages) && (
+            <Link 
             to={nextPageSlug}
             style={{marginLeft: rhythm(0.25)}}
-          >Older</Link>:
-          false}
-      </p>
+            >Older</Link>
+          )}
+          </p>
+        </Col>
+      </Row>
+
 
     </Layout>
   )
