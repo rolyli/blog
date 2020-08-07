@@ -10,7 +10,7 @@ export default function BlogPostLayout({ children }) {
     <div
       css={css`
         margin: 0 auto;
-        max-width: 1100px;
+        max-width: 800px;
         padding: ${rhythm(0.5)};
         padding-top: ${rhythm(1.5)};
       `}
