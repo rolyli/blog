@@ -11,13 +11,12 @@ module.exports = {
     `gatsby-plugin-mdx`,
     `gatsby-plugin-emotion`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-prismjs`,
-            
-          }
+          },
         ],
       },
     },

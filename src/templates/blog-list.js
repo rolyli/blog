@@ -9,7 +9,7 @@ import Layout from "../components/layout"
 import {Col, Row} from "react-bootstrap"
 
 export default function BlogList({data, pageContext}) {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   const {currentPage, numPages} = pageContext
   const previousPageSlug = currentPage - 1 === 1? '/' : `/blog/${currentPage - 1}`
   const nextPageSlug = `/blog/` + ( currentPage + 1 )
@@ -87,8 +87,8 @@ export default function BlogList({data, pageContext}) {
 
 export const blogListQuery = graphql`
   query blogListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+    allMdx(
+      sort: {order: DESC, fields: frontmatter___date}
       limit: $limit
       skip: $skip
     ) {
