@@ -10,6 +10,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-mdx`,
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-netlify-cms`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -18,6 +19,7 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
           },
         ],
+        extensions: [`.mdx`, `.md`],
       },
     },
     {
