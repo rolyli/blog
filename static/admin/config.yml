@@ -1,6 +1,6 @@
 backend:
   name: github
-  branch: rolyli/blog
+  repo: rolyli/blog
 
 media_folder: static/img
 public_folder: /img
