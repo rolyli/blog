@@ -11,22 +11,26 @@ export default function BlogPostTemplate( {data, location} ) {
   return (
     <BlogPostLayout>
       <Row>
-        <Col md={{offset: 1}}>
+        <Col>
+        <div style={{
+            marginBottom: rhythm(0.5)
+        }}>
         <h2
           style={{
             ...scale(1.15),
-            marginTop: rhythm(2),
-            marginBottom: rhythm(2)
+            marginTop: rhythm(1),
+            marginBottom: rhythm(1/10)
         }}>
           {post.frontmatter.title}
-          <br/>
-          <small
+        </h2> 
+      <small
             style={{
-              ...scale(0.10),
+
+                ...scale(0.10),
           }}>
             {post.frontmatter.date}
           </small>
-      </h2>
+          </div>
         </Col>
       </Row>
       <MDXRenderer>{post.body}</MDXRenderer>
