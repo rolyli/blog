@@ -2,9 +2,9 @@
 title: Using d3 to create a bar chart with HTML table data scraped with Python
 date: 2020-08-22T10:43:40.414Z
 ---
-In my pursuit for depth in web development, I thought it would be nice to do a couple of data visualisation projects using d3.
+For the pursuit of the full-stack, I thought it would be nice to do some data visualisation projects using d3. Besides, *data is beautiful*. 
 
-For the data itself, I decided to scrape a website that specializes in visualizing MMO game statistics (I've been meaning to get back into playing MMOs). The raw data looks like the following excerpt. It's a simple HTML table.
+I decided to scrape a website that specializes in MMO game statistics (I've been meaning to get back into playing MMOs). The raw data looks like the following excerpt. It's a simple HTML table.
 
 ```html
 <tr>
