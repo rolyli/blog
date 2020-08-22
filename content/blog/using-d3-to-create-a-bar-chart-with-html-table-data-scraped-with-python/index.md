@@ -23,4 +23,28 @@ print(json.dumps(result))
 
 The resulting JSON dictionary looks like the following excerpt. Perfect!
 
-`[["World of Warcraft", "2,314,255", "81,201,937"], ["Old School RuneScape", "1,941,056", "25,540,206"], ["FINAL FANTASY XIV: A Realm Reborn", "1,629,947", "19,063,703"], ["World of Warcraft Classic", "1,326,384", "23,269,898"], ["Destiny 2", "1,009,960", "26,577,899"], ["RuneScape", "675,752", "11,855,298"], ["The Elder Scrolls Online", "686,707", "14,456,988"] ... ]`
+```
+[
+    [
+        "World of Warcraft",
+        "2,314,255",
+        "81,201,937"
+    ],
+    [
+        "Old School RuneScape",
+        "1,941,056",
+        "25,540,206"
+    ],
+    [
+        "FINAL FANTASY XIV: A Realm Reborn",
+        "1,629,947",
+        "19,063,703"
+    ],
+    [
+        "World of Warcraft Classic",
+        "1,326,384",
+        "23,269,898"
+    ],
+    ...
+ ]
+```
