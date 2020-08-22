@@ -18,7 +18,7 @@ response = requests.get(url)
 
 pattern = "<tr>\n.*\n.*\n.*\n.*\n<a.*>(.*)<\/a>\n<\/th>\n<td>(.*)<\/td>\n<td>(.*)<\/td>"
 result = re.findall(pattern, response.text)
-print(json.dumps(result))
+print(json.dumps(result, indent=4))
 ```
 
 The resulting JSON dictionary looks like the following excerpt. Perfect!
