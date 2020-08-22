@@ -2,7 +2,7 @@
 title: Using d3 to create a bar chart with HTML table data scraped with Python
 date: 2020-08-22T10:43:40.414Z
 ---
-I'm constantly trying to broaden my depth and breath of web development, and thought it would be nice to do a couple of data visualisation projects using d3.
+In my constant persuit to broaden my depth and breath of web development knowledge, I thought it would be nice to do a couple of data visualisation projects using d3.
 
 For the data itself, I decided to scrape a website that specializes in visualizing MMO game statistics (I've been meaning to get back into playing MMOs). The raw data looks like the following excerpt. It's a simple HTML table.
 
@@ -35,7 +35,7 @@ For the data itself, I decided to scrape a website that specializes in visualizi
 </tr>
 ```
 
-The code I wrote below fetches the above html source and uses regex to extract the actual data. As `re.findall()` returns a dictionary of tuples in the case of grouped data, I used `json.dumps()` to transform them into a JSON dictionary which is ideal for d3. To easily craft the regex pattern, I used [regex 101](https://regex101.com/) which allows you to supply your pattern and data and give real time feedback on the matches. 
+The Python script I wrote below fetches the above html source and uses regex to extract the actual data. As `re.findall()` returns a dictionary of tuples in the case of grouped data, I used `json.dumps()` to transform them into a JSON dictionary which is ideal for d3. To easily craft the regex pattern, I used [regex 101](https://regex101.com/) which allows you to supply your pattern and data and give real time feedback on the matches. 
 
 ```python
 import requests
