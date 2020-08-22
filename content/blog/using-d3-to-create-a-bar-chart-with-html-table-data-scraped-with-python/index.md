@@ -4,9 +4,9 @@ date: 2020-08-22T10:43:40.414Z
 ---
 I'm constantly trying to broaden my depth and breath of web development, and thought it would be nice to do a couple of data visualisation projects using d3.
 
-For the data, I decided to scrape it from a web site. To be honest, I've been meaning to get back into playing an MMO, and was wondering what the most popular ones are. I found a website with tabular data on population rankings and decided to scrape this.
+For the data itself, I decided to scrape a website that specializes in visualizing MMO game statistics. I've been meaning to get back into playing an MMO, and was wondering what the most popular ones are.
 
-I used Python to scrape the data using the default packages that come shipped with Python 3. The code I wrote below fetches the html source and uses regex to extract the actual data. As `re.findall()` returns a dictionary of tuples in the case of grouped data, I used `json.dumps()` to transform them into a JSON dictionary which is ideal for d3. To easily craft the regex pattern, I used [regex 101] (https://regex101.com/) which allows you to supply your pattern and data and give real time feedback on the matches.
+I used Python to scrape the data using the default packages that come shipped with Python 3. The code I wrote below fetches the html source and uses regex to extract the actual data. As `re.findall()` returns a dictionary of tuples in the case of grouped data, I used `json.dumps()` to transform them into a JSON dictionary which is ideal for d3. To easily craft the regex pattern, I used [regex 101](https://regex101.com/) which allows you to supply your pattern and data and give real time feedback on the matches. 
 
 ```python
 import requests
