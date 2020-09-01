@@ -77,3 +77,7 @@ The resulting JSON dictionary looks like the following excerpt. Perfect!
     ...
  ]
 ```
+
+import Graph from "./graph"
+
+<Graph />
