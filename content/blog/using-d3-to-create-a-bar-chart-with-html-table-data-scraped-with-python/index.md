@@ -47,32 +47,68 @@ response = requests.get(url)
 
 pattern = "<tr>\n.*\n.*\n.*\n.*\n<a.*>(.*)<\/a>\n<\/th>\n<td>(.*)<\/td>\n<td>(.*)<\/td>"
 result = re.findall(pattern, response.text)
-print(json.dumps(result, indent=4))
 ```
 
-The resulting JSON dictionary looks like the following excerpt. Perfect!
-
+The data that is returned looks good except for the numbers. They are no-go for d3 because they are in a string format, with commas within the values.
 ```
 [
     [
         "World of Warcraft",
-        "2,314,255",
-        "81,201,937"
+        "2,334,490",
+        "81,911,913"
     ],
     [
         "Old School RuneScape",
-        "1,941,056",
-        "25,540,206"
+        "1,949,236",
+        "25,647,838"
     ],
     [
         "FINAL FANTASY XIV: A Realm Reborn",
-        "1,629,947",
-        "19,063,703"
+        "1,640,620",
+        "19,188,540"
     ],
     [
         "World of Warcraft Classic",
-        "1,326,384",
-        "23,269,898"
+        "1,329,328",
+        "23,321,538"
+    ],
+    ...
+ ]
+```
+
+To convert the numbers to a proper format, I used a loop.
+```python
+mmo_list = []
+
+for i in result:
+    mmo_item = [i[0], i[1], i[2]]
+    mmo_item[1] = int(mmo_item[1].replace(',', ''))
+    mmo_item[2] = int(mmo_item[2].replace(',', ''))
+    mmo_list.append(mmo_item)
+```
+
+The resulting JSON dictionary looks like the following excerpt. Perfect!
+```
+[
+    [
+        "World of Warcraft",
+        2334490,
+        81911913
+    ],
+    [
+        "Old School RuneScape",
+        1949236,
+        25647838
+    ],
+    [
+        "FINAL FANTASY XIV: A Realm Reborn",
+        1640620,
+        19188540
+    ],
+    [
+        "World of Warcraft Classic",
+        1329328,
+        23321538
     ],
     ...
  ]
