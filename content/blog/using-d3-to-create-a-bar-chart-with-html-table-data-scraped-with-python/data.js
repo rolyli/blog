@@ -1,19 +1,20 @@
-let data = [
-    [
-        "World of Warcraft",
-        2334490,
-        81911913
-    ],
-    [
-        "Old School RuneScape",
-        1949236,
-        25647838
-    ],
-    [
-        "FINAL FANTASY XIV: A Realm Reborn",
-        1640620,
-        19188540
-    ],
+
+    let data = [
+        {
+            name: 'final', total1: 800, total2: 400
+        },
+        {
+            name: 'panda', total1: 300, total2: 600
+        },
+        {
+            name: 'help', total1: 200, total2: 700
+        },
+        {
+            name: 'dumb', total1: 600, total2: 100
+        },
+    ]
+
+/*
     [
         "World of Warcraft Classic",
         1329328,
@@ -625,5 +626,6 @@ let data = [
         986
     ]
 ]
+*/
 
 export default data
