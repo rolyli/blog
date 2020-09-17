@@ -4,66 +4,61 @@ import data from './data'
 
 class Graph extends React.Component {
   componentDidMount() {
-    const svg = d3.select('#fig1')
+    data.splice(25)
 
-    const margin = 100;
-    const xMargin = 70;
+    const svg = d3.select('#fig1')
+    const margins = {top: 50, right: 0, bottom: 120, left: 70}
+
     const width = 768
     const height = 700
 
     svg.attr('viewBox', `0 0 ${width} ${height}`)
 
+    svg.append("text")
+      .attr("x", ((width + margins.left) / 2))             
+      .attr("y", 100)
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .text("Top 25 Most Played MMOs in 2020");
+
     const yScale = d3.scaleLinear()
-      .range([height - margin, margin])
-      .domain([0, 1000]);
+      .range([height - margins.bottom, margins.top])
+      .domain([0, 1500000]);
 
     const xScale = d3.scaleBand()
-      .range([xMargin, width - margin])
-      .domain(data.map((d) => d.name))
+      .range([margins.left, width - margins.right])
+      .domain(data.map((d) => d[0]))
 
     svg.append('g')
-      .attr('transform', `translate(${xMargin}, 0)`)
+      .attr('transform', `translate(${margins.left}, 0)`)
       .call(d3.axisLeft(yScale));
 
     svg.append('g')
       .attr('class', 'xaxis')
-      .attr('transform', `translate(0, ${height - margin})`)
+      .attr('transform', `translate(0, ${height - margins.bottom})`)
       .call(d3.axisBottom(xScale))
       .selectAll('text')
-      .attr("transform", "rotate(90) translate(15, -15)")
-      .style("text-anchor", "start");
+      .attr("transform", "translate(-10,0) rotate(-45)")
+      .style("text-anchor", "end");
+
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 )
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .style("font-size", "12px") 
+      .text("Total player count");      
+      
 
     svg.selectAll('rect')
       .data(data)
       .enter()
       .append('rect')
-      .attr('x', 0)
-      .attr('y', (s) => yScale(s.total1))
-      .attr('height', (s) => height - margin - yScale(s.total1))
-      .attr('width', xScale.bandwidth() - 10)
-      .transition()
-      .attr('x', (s) => xScale(s.name) + 5)
-      .attr('y', (s) => yScale(s.total1))
-      .duration(1000)
-      
-    function start() {
-      data.sort((a, b) => d3.descending(a.total2, b.total2))
-      xScale.domain(data.map((d) => d.name))
-  
-      svg.select(".xaxis")
-        .transition()
-        .call(d3.axisBottom(xScale))
-  
-      svg.selectAll('rect')
-        .data(data)
-        .transition()
-        .attr('x', (s) => xScale(s.name) + 5)
-        .attr('y', (s) => yScale(s.total2))
-        .attr('height', (s) => height - margin - yScale(s.total2))
-        .duration(1000) 
-    }
-
-    d3.select('#fig1').on("click", () => start()) 
+      .attr('height', (s) => height - margins.bottom - yScale(s[1]))
+      .attr('width', xScale.bandwidth() - 5)
+      .attr('x', (s) => xScale(s[0]) + 5)
+      .attr('y', (s) => yScale(s[1]))
   }
 
   render() {

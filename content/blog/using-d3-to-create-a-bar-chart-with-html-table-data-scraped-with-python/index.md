@@ -1,8 +1,16 @@
 ---
-title: Using d3 to create a bar chart with HTML table data scraped with Python
+title: Embedding d3 bar chart within markdown... and Python webscraping!
 date: 2020-08-22T10:43:40.414Z
 ---
-For the pursuit of the full-stack, I thought it would be nice to do some data visualisation projects using d3. Besides, *data is beautiful*. 
+Data visualizations are beautiful. Here is a reflection of my learning processes on creating a d3.js bar chart, and taking advantage of MDX for embedding the graph as React component.
+
+## Final bar chart
+
+import Graph from "./graph"
+
+<Graph />
+
+## The process
 
 I decided to scrape a website that specializes in MMO game statistics (I've been meaning to get back into playing MMOs). The raw data looks like the following excerpt. It's a simple HTML table.
 
@@ -114,6 +122,76 @@ The resulting JSON dictionary looks like the following excerpt. Perfect!
  ]
 ```
 
+As the data was ready, it was time to create the React component for the bar chart. Since I am using MDX formats for my blog posts, it allows me to embed React components directly into the markdown like the following (due to my oversight, it was a pain to convert the website to use .md to .mdx for blog posts but it was worth the effort).
+
+```js
 import Graph from "./graph"
 
 <Graph />
+```
+
+The graph itself is simple bar chart made using d3. Interestingly it resides within a React component so that I can embed it within my markdown blog post.
+
+```
+import React from "react"
+import * as d3 from "d3"
+import data from './data'
+
+class Graph extends React.Component {
+  componentDidMount() {
+    data.splice(25)
+
+    const svg = d3.select('#fig1')
+    const margins = {top: 50, right: 0, bottom: 120, left: 70}
+
+    const width = 768
+    const height = 700
+
+    svg.attr('viewBox', `0 0 ${width} ${height}`)
+
+    svg.append("text")
+      .attr("x", ((width + margins.left) / 2))             
+      .attr("y", 100)
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .text("Top 25 Most Played MMOs in 2020");
+
+    const yScale = d3.scaleLinear()
+      .range([height - margins.bottom, margins.top])
+      .domain([0, 1500000]);
+
+    const xScale = d3.scaleBand()
+      .range([margins.left, width - margins.right])
+      .domain(data.map((d) => d[0]))
+
+    svg.append('g')
+      .attr('transform', `translate(${margins.left}, 0)`)
+      .call(d3.axisLeft(yScale));
+
+    svg.append('g')
+      .attr('class', 'xaxis')
+      .attr('transform', `translate(0, ${height - margins.bottom})`)
+      .call(d3.axisBottom(xScale))
+      .selectAll('text')
+      .attr("transform", "translate(-10,0) rotate(-45)")
+      .style("text-anchor", "end");
+
+    svg.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('height', (s) => height - margins.bottom - yScale(s[1]))
+      .attr('width', xScale.bandwidth() - 5)
+      .attr('x', (s) => xScale(s[0]) + 5)
+      .attr('y', (s) => yScale(s[1]))
+  }
+
+  render() {
+    return (
+      <svg id="fig1" />
+      )
+  }
+}
+
+export default Graph
+```

@@ -1,20 +1,5 @@
 
-    let data = [
-        {
-            name: 'final', total1: 800, total2: 400
-        },
-        {
-            name: 'panda', total1: 300, total2: 600
-        },
-        {
-            name: 'help', total1: 200, total2: 700
-        },
-        {
-            name: 'dumb', total1: 600, total2: 100
-        },
-    ]
-
-/*
+let data = [
     [
         "World of Warcraft Classic",
         1329328,
@@ -626,6 +611,5 @@
         986
     ]
 ]
-*/
 
 export default data
